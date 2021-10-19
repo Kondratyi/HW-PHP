@@ -1,59 +1,41 @@
 <?php
 
-//Задание 3
+//Задание 1
 
-$a = 5;
-$b = '05';
+function renderGallery($imagesQuantity) {
+    for($i = 1; $i <= $imagesQuantity; $i++) {
+        echo "<a href=\"img/img-$i.jpg\" target=\"_blank\"><img src=\"img/img-$i.jpg\" alt=\"\" style=\"width: 300px; height: 200px\"></a>";
+    }
+}
+$imagesQuantity = 8;
 
-var_dump($a == $b); // Почему true? - т.к. сравнение проводится с помощью оператора ==, то строка '05' неявно приводится к числовому значению
+//Задание 2
 
-var_dump((int)'012345'); // Почему 12345? - с помощью (int) строка '012345' приводится к числовому значению
+$images = scandir("img/");
 
-var_dump((float)123.0 === (int)123.0); // Почему false? - из-за неточности чисел с плавающей точкой
-
-var_dump((int)0 === (int)'hello, world'); // Почему true? - Строка, не содержащая число, преобразуется в 0
-
-//Задание 5*
-
-$a = 1;
-$b = 2;
-
-$b = $b - $a;
-$a = $a + $b;
-
-echo "$a $b";
-
-//Задание 4
-$title = 'Документ';
-$date = date("d.m.Y");
-$subtitle = 'Заголовок'
+function renderAnotherGalery($images) {
+    foreach($images as $image) {
+        if(is_file("img/".$image)) {
+            echo "<a href=\"img\\$image\" target=\"_blank\"><img src=\"img\\$image\" alt=\"\" style=\"width: 300px; height: 200px\"></a>";
+        }
+    }
+}
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $title ?></title>
+    <title>Document</title>
 </head>
 <body>
-    <header><h1><?php echo $subtitle ?></h1></header>
-    <footer><?php echo $date ?></footer>
+    <header></header>
+    <section>
+    <?php renderGallery($imagesQuantity); ?>
+    <?php renderAnotherGalery($images); ?>
+    </section>
+    <footer></footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
